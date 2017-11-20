@@ -10,7 +10,7 @@ let currentUser;
 
 
 // Register
-router.post('/register', function(req, res){
+router.post('/users/register', function(req, res){
 	console.log(req.body);
 	var name = req.body.name;
 	var email = req.body.email;
@@ -29,7 +29,7 @@ router.post('/register', function(req, res){
 
 	var errors = req.validationErrors();
 	if(errors){
-		res.render('register',{errors:errors});
+		res.render('views/register',{errors:errors});
 	}
 	else{
 		var newUser = new User({
@@ -43,7 +43,7 @@ router.post('/register', function(req, res){
 		});
 
 		req.flash('success_msg', 'You are registered and can now login');
-		res.redirect('/login');	
+		res.redirect('views/login');	
 	}
 });
 
@@ -122,17 +122,17 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-router.post('/login',
+router.post('users/login',
   passport.authenticate('local', {successRedirect:'/', failureRedirect:'/login',failureFlash: true}),
   function(req, res) {
     res.redirect('/');
 });
 
 //logout 
-router.get('/logout', function(req,res){
+router.get('users/logout', function(req,res){
 	req.logout();
 	req.flash('success_msg', 'you are logged out');
-	res.redirect('/login');
+	res.redirect('views/login');
 })
   
 module.exports = router;
