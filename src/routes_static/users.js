@@ -5,12 +5,12 @@ var LocalStrategy = require('passport-local').Strategy;
 var expressLayouts = require('express-ejs-layouts');
 
 //importing Mongodb database schema
-var User= require('../models/user');
+var User = require('../models/user');
 let currentUser;
 
 
 // Register
-router.post('/users/register', function(req, res){
+router.post('/register', function(req, res){
 	console.log(req.body);
 	var name = req.body.name;
 	var email = req.body.email;
@@ -122,7 +122,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-router.post('users/login',
+router.post('/login',
   passport.authenticate('local', {successRedirect:'/', failureRedirect:'/login',failureFlash: true}),
   function(req, res) {
     res.redirect('/');
