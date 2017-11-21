@@ -92,6 +92,7 @@ app.use(function (req, res, next) {
 });
 
 
+app.use('/users',users);
 
 // universal routing and rendering
 app.get('*', (req, res) => {
@@ -129,7 +130,6 @@ app.get('*', (req, res) => {
 });
 
 
-app.use('/users',users);
 // start the server
 const port = process.env.PORT || 3000;
 const env = process.env.NODE_ENV || 'production';
