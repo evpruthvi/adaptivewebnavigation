@@ -136,7 +136,7 @@ router.post('/login',
 });
 
 //logout 
-router.get('users/logout', function(req,res){
+router.get('/logout', function(req,res){
 	req.logout();
 	req.flash('success_msg', 'you are logged out');
 	res.redirect('/');
