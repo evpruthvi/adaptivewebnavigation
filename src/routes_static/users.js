@@ -17,6 +17,8 @@ router.post('/register', function(req, res){
 	var username = req.body.username;
 	var password = req.body.password;
 	var password2 = req.body.password2;
+	var interest = req.body.interest;
+	console.log(interest);
 
 	//Validation
 	req.checkBody('name', 'Name is required').notEmpty();
@@ -37,6 +39,7 @@ router.post('/register', function(req, res){
 			email:email,
 			username: username,
 			password: password,
+      interest: interest
 		})
 		User.createUser(newUser, function(err, user){
 			if(err) throw err;
