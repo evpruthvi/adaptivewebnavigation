@@ -96,17 +96,7 @@ app.use(function (req, res, next) {
 // universal routing and rendering
 app.get('*', (req, res) => {
   
-  //Registration ejs template page
-  if(req.url=='/register'){
-    return res.render('register');
-  }
-  
-  // Login ejs template page
-  if(req.url=='/login'){
-    return res.render('login');
-  }
-
-  //All other routings
+   //All other routings
   match(
     { routes, location: req.url },
     (err, redirectLocation, renderProps) => {

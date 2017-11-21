@@ -14,25 +14,6 @@
       <% include partials/header %>
     </header>
     <div class="container">
-        <div class="header clearfix">
-            <nav>
-                <ul class="nav nav-pills float-right">                   
-                <%if (user){ %>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Profile</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users/logout">Logout</a>
-                    </li>                  
-
-                <% } %>
-                </ul>
-            </nav>
-        </div>
-		<hr>
-
         <div class="row">
             <div class="col-xs-12">
 	              <%if (success_msg.length>0){%>

@@ -9,6 +9,13 @@ var User = require('../models/user');
 let currentUser;
 
 
+ //Registration ejs template page
+  router.get('/register', function(req,res){
+    res.render('register');
+  });
+  router.get('/login', function(req,res){
+    res.render('login');
+  });
 // Register
 router.post('/register', function(req, res){
 	console.log(req.body);
@@ -29,7 +36,7 @@ router.post('/register', function(req, res){
 
 	var errors = req.validationErrors();
 	if(errors){
-		res.render('views/register',{errors:errors});
+		res.render('register',{errors:errors});
 	}
 	else{
 		var newUser = new User({
@@ -43,7 +50,7 @@ router.post('/register', function(req, res){
 		});
 
 		req.flash('success_msg', 'You are registered and can now login');
-		res.redirect('views/login');	
+		res.redirect('/login');	
 	}
 });
 
@@ -132,7 +139,7 @@ router.post('/login',
 router.get('users/logout', function(req,res){
 	req.logout();
 	req.flash('success_msg', 'you are logged out');
-	res.redirect('views/login');
+	res.redirect('/');
 })
   
 module.exports = router;
