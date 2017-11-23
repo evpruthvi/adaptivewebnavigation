@@ -23,6 +23,7 @@ import passport from 'passport';
 import cookieSession from 'cookie-session';
 
 import users from './routes_static/users';
+import search from './routes_static/search';
 
 // initialize the server and configure support for ejs templates
 const app = new Express();
@@ -93,7 +94,6 @@ app.use(function (req, res, next) {
 
 
 app.use('/users',users);
-
 // universal routing and rendering
 app.get('*', (req, res) => {
   
