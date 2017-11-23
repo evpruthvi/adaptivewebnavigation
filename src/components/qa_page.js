@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
-import answer from './answer_list_item';
-import QuestionPost from './question';
 import AnswerList from './answer_list';
+import Question from './question';
+import QaFooter from './qa_page_footer';
+import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
 
-class QAPage extends Component{
-  constructor(props) {
+class qaresult extends Component{
+  constructor(props){
     super(props);
-    this.state = {question: [], answers:[]};
+    this.state = { answers: [], question: [] };
+    var user_id  = props.params.tag;
+
 
     elasticdb.search({
       index:'stackoverflow-data',
@@ -16,12 +19,12 @@ class QAPage extends Component{
       body:{
         query:{
           match:{
-            tag:'java'
+            tag:user_id
           }
         }
       }
     }).then(function (resp) {
-        this.setState({question: resp.hits.hits});
+        this.setState({question:resp.hits.hits[0]});
         this.setState({ answers:resp.hits.hits });
       }.bind(this),
       function(error){
@@ -29,12 +32,15 @@ class QAPage extends Component{
       }
     );
   }
-    render(){
-      return(
-        <div>
-          <AnswerList aposts = {this.state.answers} />;
-        </div>
-      );
-    }
+
+  render(){
+    console.log(this.state.question);
+    return(
+      <div>
+        <AnswerList aposts = {this.state.answers} />
+        <QaFooter />
+      </div>
+    );
+  }
 }
-export default QAPage;
+export default qaresult;

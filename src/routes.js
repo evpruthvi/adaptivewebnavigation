@@ -14,7 +14,7 @@ const routes = (
   <Route path="/" component={Layout}>
     <Route path="/search/tag/:tag" component={tag_results}/>
     <Route path="/search/user/:userid" component={user_results}/>
-    <Route path="/search/qa" component={qa_page}/>
+    <Route path="/search/qa/:tag" component={qa_page}/>
     <Route path = "/so" component={post_list_item}/>
     <Route path="*" component={NotFoundPage}/>
   </Route>

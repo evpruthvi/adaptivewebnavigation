@@ -1,8 +1,7 @@
 import React from 'react';
 
-const QuestionPost = (props) => {
-  if(props.qpost.length>0){
-  console.log(props.qpost);
+const Question = (props) => {
+  if(!props.qpost){
   return(
     <div>
       <div id="question-header">
@@ -74,11 +73,27 @@ const QuestionPost = (props) => {
         </table>
         </div>
       </div>
+
+      <a name="tab-top"></a>
+      <div id="answers-header">
+        <div className="subheader answers-subheader">
+          <h2>
+            <span itemProp="answerCount">1</span>
+          </h2>
+          <div>
+            <div id="tabs">
+              <a href="https://stackoverflow.com/questions/47446738/trigger-function-only-if-no-mouse-clicks-in-x-seconds?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+                active</a>
+              <a href="https://stackoverflow.com/questions/47446738/trigger-function-only-if-no-mouse-clicks-in-x-seconds?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+                oldest</a>
+              <a className="youarehere" href="https://stackoverflow.com/questions/47446738/trigger-function-only-if-no-mouse-clicks-in-x-seconds?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+                votes</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     );
   }
-  else{
-    return <div>Loading...</div>;
-  }
 };
-export default QuestionPost;
+export default Question;

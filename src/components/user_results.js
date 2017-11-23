@@ -27,7 +27,6 @@ class userResult extends Component{
         function(error){
         	console.trace(error.message);
         }
-        
         );
      	}
 
