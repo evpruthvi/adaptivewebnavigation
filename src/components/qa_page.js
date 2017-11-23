@@ -8,7 +8,7 @@ import elasticdb from '../elasticdb';
 class qaresult extends Component{
   constructor(props){
     super(props);
-    this.state = { answers: [], question: [] };
+    this.state = { answers: []};
     var user_id  = props.params.tag;
 
 
@@ -24,8 +24,7 @@ class qaresult extends Component{
         }
       }
     }).then(function (resp) {
-        this.setState({question:resp.hits.hits[0]});
-        this.setState({ answers:resp.hits.hits });
+        this.setState({ answers: resp.hits.hits});
       }.bind(this),
       function(error){
         console.trace(error.message);
