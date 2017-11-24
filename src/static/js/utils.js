@@ -115,7 +115,6 @@ $("a").mousedown( function(e) {
 });
 $("button").trigger("mousedown");
 
-		
 $('body').mouseup(function() {
 	console.log('Text Select');
 	//var data = "Text is selected";
