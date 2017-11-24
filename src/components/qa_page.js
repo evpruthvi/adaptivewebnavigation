@@ -4,13 +4,12 @@ import Question from './question';
 import QaFooter from './qa_page_footer';
 import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
-
+import SidebarList from './sidebar_list';
 class qaresult extends Component{
   constructor(props){
     super(props);
     this.state = { answers: []};
     var user_id  = props.params.tag;
-
 
     elasticdb.search({
       index:'stackoverflow-data',
@@ -34,9 +33,10 @@ class qaresult extends Component{
 
   render(){
     return(
-      <div>
+      <div className="inner-content">
         <Question qpost = {this.state.answers[0]} nanswers = {this.state.answers.length}/>
         <AnswerList aposts = {this.state.answers} />
+        <SidebarList recposts = {this.state.answers} />
         <QaFooter />
       </div>
     );

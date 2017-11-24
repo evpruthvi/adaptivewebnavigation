@@ -37,9 +37,8 @@ const Question = (props) => {
                     <p>{props.qpost._source.text}</p>
 
                   <pre className="default prettyprint prettyprinted" styles=""><code>
-                    <span className="kwd">
                       {props.qpost._source.code}
-                    </span></code>
+                    </code>
                   </pre>
                 </div>
                 <div className="post-taglist">

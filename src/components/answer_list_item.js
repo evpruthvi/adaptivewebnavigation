@@ -4,7 +4,7 @@ const AnswerListItem = (props)=>{
   return(
     <div>
         <div id="answers">
-          <div id="answer-47446778" class="answer" data-answerid="47446778" itemScope="" itemType="http://schema.org/Answer">
+          <div id="answer-47446778" className="answer" data-answerid="47446778" itemScope="" itemType="http://schema.org/Answer">
 
           <table>
             <tbody>
