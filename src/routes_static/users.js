@@ -34,8 +34,8 @@ router.post('/register', function(req, res){
 
 	req.checkBody('username', 'username required').notEmpty();	
 	req.checkBody('password', 'password is required').notEmpty();
-	req.checkBody('password2', 'passwords do not match').equals(req.body.password);	
-
+	req.checkBody('password2', 'passwords do not match').equals(req.body.password);
+	
 	var errors = req.validationErrors();
 	if(errors){
 		res.render('register.ejs',{errors:errors});
@@ -81,44 +81,6 @@ passport.use(new LocalStrategy(
    });
 }));
 
-// receiving data from extension
-router.post('/rxdx', function(req, res){
-    	//User.getUserByUsername(currentUser, function(err, user){
-  	 	//	if(err) throw err;
-  	 	var user=currentUser;
-		var text = req.body.text.trim().split("|");
-	    var key=text[0].trim();
-  	    var value=text[1]
-  	    console.log(key+":"+value);     
-	    var stamp=req.body.stamp;
-	    switch(key){
-	    	case "up vote": user.log1.addToSet("up-voted answer on: "+value+" at "+stamp);		
-	    					user.save(function(err) {if(err) throw err;});
-							break;
-		    case "down vote": user.log1.addToSet("down voted answer on: "+value+" at "+stamp);
-		    				 user.save(function(err) {if(err) throw err;});
-							break;
-		    case "share": user.log2.addToSet("shared an answer on "+value+" at "+stamp);
-							user.save(function(err) {if(err) throw err;});
-							break;
-			case "add a comment": user.log2.addToSet("commented on a answer on "+value+" at "+stamp);	
-							user.save(function(err) {if(err) throw err;});
-							break;
-			case "Ask Question" : user.log4.addToSet("Asked at "+stamp);
-							user.save(function(err) {if(err) throw err;});
-							break;
-			case "ask your own question" : user.log4.addToSet("Asked at "+stamp);
-							user.save(function(err) {if(err) throw err;});
-							break;
-			case "Question clicked" :user.log5.addToSet(value+" at "+stamp);
-							user.save(function(err) {if(err) throw err;});
-							break;
-			default : user.log3.addToSet(key+" at "+stamp);
-							user.save(function(err) {if(err) throw err;});
-							break;
-		}
-	});
-
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
@@ -141,6 +103,42 @@ router.get('/logout', function(req,res){
 	req.logout();
 	req.flash('success_msg', 'You are now logged out');
 	res.redirect('login');
-})
+});
+
+// user activity collection endpoint
+router.post('/jspost', function(req, res){
+  	var user = currentUser;
+  	if (user == null) {
+  		console.log("No user logged in!");
+  		return;
+  	}
+  	var value = req.body.data
+  	var moment = require('moment');
+	var stamp = moment().format('MMMM Do YYYY, h:mm:ss a');
+	console.log(value + " at " + stamp);
+	switch(value){
+	    case "Scroll Up": user.log1.addToSet(value+" at "+stamp);
+		    user.save(function(err) {if(err) throw err;});
+			break;
+		case "Scroll Down": user.log1.addToSet(value+" at "+stamp);
+		    user.save(function(err) {if(err) throw err;});
+			break;
+	    case "Mouse Up": user.log2.addToSet(value+" at "+stamp);
+		    user.save(function(err) {if(err) throw err;});
+			break;
+		case "Mouse Down": user.log2.addToSet(value+" at "+stamp);
+		    user.save(function(err) {if(err) throw err;});
+			break;
+		case "Button Click": user.log3.addToSet(value+" at "+stamp);
+		    user.save(function(err) {if(err) throw err;});
+			break;
+		case "Link Click": user.log4.addToSet(value+" at "+stamp);
+		    user.save(function(err) {if(err) throw err;});
+			break;
+		case "Text Select": user.log5.addToSet(value+" at "+stamp);
+		    user.save(function(err) {if(err) throw err;});
+			break;
+	}
+});
 
 module.exports = router;
