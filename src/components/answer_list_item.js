@@ -49,7 +49,6 @@ const AnswerListItem = (props)=>{
           </div>
         </div>
         <a name="47340028"></a>
-        <hr/>
     </div>
 
   );

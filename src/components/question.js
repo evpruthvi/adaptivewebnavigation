@@ -2,10 +2,12 @@ import React from 'react';
 
 const Question = (props) => {
   if(!props.qpost){
+    return <div>Loading</div>
+  }
   return(
     <div>
       <div id="question-header">
-          <h1 itemprop="name"><a href="https://stackoverflow.com/questions/47446738/trigger-function-only-if-no-mouse-clicks-in-x-seconds" className="question-hyperlink">{props.qpost._source.title}</a></h1>
+          <h1 itemProp="name"><a href="https://stackoverflow.com/questions/47446738/trigger-function-only-if-no-mouse-clicks-in-x-seconds" className="question-hyperlink">{props.qpost._source.title}</a></h1>
 
           <div className="aside-cta" role="navigation" aria-label="ask new question">
                   <a href="https://stackoverflow.com/questions/ask" className="btn">Ask Question</a>
@@ -14,15 +16,15 @@ const Question = (props) => {
 
       <div id="mainbar" role="main" aria-label="question and answers">
         <div className="question" data-questionid="47446738" id="question">
-          <div id="dfp-tlb" className="everyonelovesstackoverflow" style="display: none;"></div>    <table>
+          <table>
             <tbody><tr>
             <td className="votecell">
 
             <div className="vote">
               <input name="_id_" value="47446738" type="hidden"/>
-              <a className="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
-              <span itemprop="upvoteCount" className="vote-count-post ">0</span>
-              <a className="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+              <a className="vote-up-off" title="This question shows research effort; it is useful and clear"><img src="/img/upvote.png"/>up vote</a>
+              <span itemProp="upvoteCount" className="vote-count-post ">{props.qpost._source.vote}</span>
+              <a className="vote-down-off" title="This question does not show any research effort; it is unclear or not useful"><img src="/img/downvote.png"/>down vote</a>
 
               <a className="star-off" href="#" title="Click to mark as favorite question (click again to undo)">favorite</a>
               <div className="favoritecount"><b></b></div>
@@ -31,10 +33,10 @@ const Question = (props) => {
             
             <td className="postcell">
             <div>
-                <div className="post-text" itemprop="text">
+                <div className="post-text" itemProp="text">
                     <p>{props.qpost._source.text}</p>
 
-                  <pre className="default prettyprint prettyprinted" style=""><code>
+                  <pre className="default prettyprint prettyprinted" styles=""><code>
                     <span className="kwd">
                       {props.qpost._source.code}
                     </span></code>
@@ -45,20 +47,20 @@ const Question = (props) => {
                 </div>
                 <table className="fw">
                   <tbody>
-                    <tr>ss="post-signature" align="right">
+                    <tr className="post-signature" align="right">
 
                       <td className="post-signature owner">
                           <div className="user-info ">
                             <div className="user-action-time">
-                                asked <span title="2017-11-23 02:41:01Z" className="relativetime">9 mins ago</span>
+                                asked <span title="2017-11-23 02:41:01Z" className="relativetime">{props.qpost._source.time} mins ago</span>
                             </div>
                             <div className="user-gravatar32">
                                 <a href="https://stackoverflow.com/users/2648536/sporedev"><div className="gravatar-wrapper-32"><img src="/img/user.png" alt="" width="32" height="32"/></div></a>
                             </div>
                             <div className="user-details">
-                                <a href="https://stackoverflow.com/users/2648536/sporedev">SporeDev</a>
+                                <a href="https://stackoverflow.com/users/2648536/sporedev">{props.qpost._source.user_id}</a>
                                 <div className="-flair">
-                                    <span className="reputation-score" title="reputation score " dir="ltr">{props.qpost._source.reputaion}</span><span title="1 gold badge"><span className="badge1"></span><span className="badgecount">1</span></span><span title="3 silver badges"><span className="badge2"></span><span className="badgecount">3</span></span><span title="15 bronze badges"><span className="badge3"></span><span className="badgecount">15</span></span>
+                                    <span className="reputation-score" title="reputation score " dir="ltr">{props.qpost._source.reputaion}</span>
                                 </div>
                             </div>
                           </div>
@@ -78,7 +80,7 @@ const Question = (props) => {
       <div id="answers-header">
         <div className="subheader answers-subheader">
           <h2>
-            <span itemProp="answerCount">1</span>
+            <span itemProp="answerCount">{props.nanswers} Answers</span>
           </h2>
           <div>
             <div id="tabs">
@@ -94,6 +96,5 @@ const Question = (props) => {
       </div>
     </div>
     );
-  }
 };
 export default Question;

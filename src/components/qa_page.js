@@ -33,9 +33,9 @@ class qaresult extends Component{
   }
 
   render(){
-    console.log(this.state.question);
     return(
       <div>
+        <Question qpost = {this.state.answers[0]} nanswers = {this.state.answers.length}/>
         <AnswerList aposts = {this.state.answers} />
         <QaFooter />
       </div>
