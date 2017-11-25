@@ -18,7 +18,7 @@ router.get('/login', function(req,res){
    	res.render('login.ejs');
 });
 
-// register
+// register user
 router.post('/register', function(req, res){
 	console.log(req.body);
 	var name = req.body.name;
@@ -34,8 +34,8 @@ router.post('/register', function(req, res){
 
 	req.checkBody('username', 'username required').notEmpty();	
 	req.checkBody('password', 'password is required').notEmpty();
-	req.checkBody('password2', 'passwords do not match').equals(req.body.password);
-	
+	req.checkBody('password2', 'passwords do not match').equals(req.body.password);	
+
 	var errors = req.validationErrors();
 	if(errors){
 		res.render('register.ejs',{errors:errors});
@@ -93,7 +93,7 @@ passport.deserializeUser(function(id, done) {
 
 // login post endpoint
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/', failureRedirect:'login',failureFlash: true}),
+  passport.authenticate('local', {successRedirect:'/default', failureRedirect:'login',failureFlash: true}),
   function(req, res) {
     res.redirect('/');
 });
@@ -103,7 +103,7 @@ router.get('/logout', function(req,res){
 	req.logout();
 	req.flash('success_msg', 'You are now logged out');
 	res.redirect('login');
-});
+})
 
 // user activity collection endpoint
 router.post('/jspost', function(req, res){
