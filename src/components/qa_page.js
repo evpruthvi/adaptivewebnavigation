@@ -11,7 +11,7 @@ class qaresult extends Component{
   constructor(props){
     super(props);
     this.state = { answers: []};
-    var user_id  = props.params.tag;
+    var title  = props.params.title;
 
     elasticdb.search({
       index:'stackoverflow-data',
@@ -20,7 +20,7 @@ class qaresult extends Component{
       body:{
         query:{
           match:{
-            tag:user_id
+            title:title
           }
         }
       }

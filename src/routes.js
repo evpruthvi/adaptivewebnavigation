@@ -16,7 +16,7 @@ const routes = (
     <Route path="/default" component={default_results}/>
     <Route path="/search/tag/:tag" component={tag_results}/>
     <Route path="/search/user/:userid" component={user_results}/>
-    <Route path="/search/qa/:tag" component={qa_page}/>
+    <Route path="/search/qa/:title" component={qa_page}/>
     <Route path = "/so" component={post_list_item}/>
     <Route path="*" component={NotFoundPage}/>
   </Route>
