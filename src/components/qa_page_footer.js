@@ -3,8 +3,8 @@ import React from 'react';
 const QaFooter = function(){
   return(
     <div>
-      <a name="new-answer"></a>
-      <form id="post-form" action="/questions/47446738/answer/submit" method="post" className="post-form">
+    <form id="post-form" action="/questions/47446738/answer/submit" method="post" className="post-form">
+      <div id="post-editor" className="post-editor js-post-editor">
         <input id="post-id" value="47446738" type="hidden"/>
         <input id="qualityBanWarningShown" name="qualityBanWarningShown" value="false" type="hidden"/>
         <input name="referrer" value="https://stackoverflow.com/" type="hidden"/>
@@ -13,6 +13,7 @@ const QaFooter = function(){
           <input id="submit-button" value="Post Your Answer" tabIndex="110" type="submit"/>
           <a href="#" className="btn-clear discard-answer dno">discard</a>
         </div>
+      </div>
       </form>
 
       <h2 className="bottom-notice" data-loc="1">

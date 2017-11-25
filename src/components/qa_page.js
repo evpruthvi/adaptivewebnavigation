@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import AnswerList from './answer_list';
+import QuestionHeader from './question_header';
+
 import Question from './question';
 import QaFooter from './qa_page_footer';
 import NotFoundPage from './NotFoundPage'
@@ -34,10 +36,14 @@ class qaresult extends Component{
   render(){
     return(
       <div className="inner-content">
-        <Question qpost = {this.state.answers[0]} nanswers = {this.state.answers.length}/>
-        <AnswerList aposts = {this.state.answers} />
-        <SidebarList recposts = {this.state.answers} />
-        <QaFooter />
+        <QuestionHeader qpost = {this.state.answers[0]} />
+        <div id="mainbar" role="main" aria-label="question and answers">
+          <Question qpost = {this.state.answers[0]} nanswers = {this.state.answers.length}/>
+          <AnswerList aposts = {this.state.answers} />
+          <QaFooter />
+
+        </div>
+          <SidebarList recposts = {this.state.answers} />
       </div>
     );
   }
