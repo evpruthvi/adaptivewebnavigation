@@ -4,6 +4,21 @@ const Question = (props) => {
   if(!props.qpost){
     return <div>Loading</div>
   }
+
+  var userLink = `/search/user/${props.qpost._source.user_id}`;
+  var titleLink = `/search/qa/${props.qpost._source.title}`;
+  var tag=[];
+  for(var i=0;i<3;i++){
+    tag[i]=props.qpost._source.tag.split(" ")[i];
+  }
+  var tagLink = [];
+  for(var i=0;i<3;i++){
+    tagLink[i]=`/search/tag/${tag[i]}`;
+  }
+  var tagTitle = [];
+  for(var i=0;i<3;i++){
+    tagTitle[i]=`show questions tagged ${tag[i]}`;
+  }
   return(
         <div className="question" data-questionid="47446738" id="question">
           <table>
@@ -12,12 +27,9 @@ const Question = (props) => {
 
             <div className="vote">
               <input name="_id_" value="47446738" type="hidden"/>
-              <a className="vote-up-off" title="This question shows research effort; it is useful and clear"><img src="/img/upvote.png"/>up vote</a>
+              <a className="vote-up-off" title="Good one!"><img src="/img/upvote.png"/>up vote</a>
               <span itemProp="upvoteCount" className="vote-count-post ">{props.qpost._source.vote}</span>
-              <a className="vote-down-off" title="This question does not show any research effort; it is unclear or not useful"><img src="/img/downvote.png"/>down vote</a>
-
-              <a className="star-off" href="#" title="Click to mark as favorite question (click again to undo)">favorite</a>
-              <div className="favoritecount"><b></b></div>
+              <a className="vote-down-off" title="Not bad!"><img src="/img/downvote.png"/>down vote</a>
             </div>
             </td>
             
@@ -32,7 +44,7 @@ const Question = (props) => {
                   </pre>
                 </div>
                 <div className="post-taglist">
-                    <a href="https://stackoverflow.com/questions/tagged/javascript" className="post-tag js-gps-track" title="show questions tagged 'javascript'" rel="tag">javascript</a> <a href="https://stackoverflow.com/questions/tagged/jquery" className="post-tag js-gps-track" title="show questions tagged 'jquery'" rel="tag">jquery</a>
+                  <a href={tagLink[0]} className="post-tag" title={tagTitle[0]} rel="tag">{tag[0]}</a> <a href={tagLink[2]} className="post-tag" title={tagTitle[1]} rel="tag">{tag[1]}</a> <a href={tagLink[2]} className="post-tag" title={tagTitle[2]} rel="tag">{tag[2]}</a>
                 </div>
                 <table className="fw">
                   <tbody>
@@ -44,10 +56,10 @@ const Question = (props) => {
                                 asked <span title="2017-11-23 02:41:01Z" className="relativetime">{props.qpost._source.time} mins ago</span>
                             </div>
                             <div className="user-gravatar32">
-                                <a href="https://stackoverflow.com/users/2648536/sporedev"><div className="gravatar-wrapper-32"><img src="/img/user.png" alt="" width="32" height="32"/></div></a>
+                                <a href={userLink}><div className="gravatar-wrapper-32"><img src="/img/user.png" alt="" width="32" height="32"/></div></a>
                             </div>
                             <div className="user-details">
-                                <a href="https://stackoverflow.com/users/2648536/sporedev">{props.qpost._source.user_id}</a>
+                                <a href={userLink}>{props.qpost._source.user_id}</a>
                                 <div className="-flair">
                                     <span className="reputation-score" title="reputation score " dir="ltr">{props.qpost._source.reputaion}</span>
                                 </div>
