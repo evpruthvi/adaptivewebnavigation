@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PostList from './post_list';
 import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
-import { instanceOf } from 'prop-types';
 import cookie from 'react-cookie';
 
 class result extends Component{
@@ -37,7 +36,7 @@ class result extends Component{
      	}
 
     	render(){
-	      console.log(cookie.load('user'));
+	      console.log(cookie.load('userid'));
         return(
 				<div>
 					<PostList posts = {this.state.hits} />

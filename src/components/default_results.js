@@ -2,14 +2,20 @@ import React, {Component} from 'react';
 import PostList from './post_list';
 import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
+import cookie from 'react-cookie';
 
 class DefaultResult extends Component{
   constructor(props){
     super(props);
     this.state = { hits: [] };
-    var tag  = 'java';
-
-
+    var tag  = '';
+    console.log(cookie.load('userid'));
+    if(cookie.load('userid')){
+      tag = 'css';
+    }
+    else{
+      tag = 'python';
+    }
     elasticdb.search({
       index:'stackoverflow-data',
       type:'stackoverflowdata',

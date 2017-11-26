@@ -21,6 +21,7 @@ import flash from 'connect-flash';
 import session from 'express-session';
 import passport from 'passport';
 import cookieSession from 'cookie-session';
+import {CookiesProvider} from 'react-cookie';
 
 import users from './routes_static/users';
 
@@ -118,6 +119,7 @@ app.get('*', (req, res) => {
         markup = renderToString(
 
            <RouterContext {...renderProps}/>
+          </CookiesProvider>
         );
       } else {
         // otherwise we can render a 404 page
