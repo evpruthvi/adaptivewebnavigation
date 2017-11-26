@@ -7,6 +7,8 @@ import QaFooter from './qa_page_footer';
 import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
 import SidebarList from './sidebar_list';
+import cookie from 'react-cookie';
+
 class qaresult extends Component{
   constructor(props){
     super(props);

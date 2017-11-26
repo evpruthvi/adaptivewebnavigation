@@ -2,14 +2,19 @@ import React, {Component} from 'react';
 import PostList from './post_list';
 import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
+import { instanceOf } from 'prop-types';
+import cookie from 'react-cookie';
 
 class result extends Component{
-	constructor(props){
+
+  constructor(props){
 		super(props);
-		this.state = { hits: [] };
+   	this.state = { hits: [] };
 		var tag  = props.params.tag;
-
-
+   /* if(cookie.load('userid')){
+      var tag = '';
+    }
+*/
 			elasticdb.search({
             index:'stackoverflow-data',
             type:'stackoverflowdata',
@@ -32,6 +37,7 @@ class result extends Component{
      	}
 
     	render(){
+	      console.log(cookie.load('user'));
         return(
 				<div>
 					<PostList posts = {this.state.hits} />

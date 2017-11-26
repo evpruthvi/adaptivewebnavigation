@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import PostList from './post_list';
 import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
+import cookie from 'react-cookie';
 
 class userResult extends Component{
 	constructor(props){
 		super(props);
 		this.state = { hits: [] };
 		var user_id  = props.params.userid;
-
 
 			elasticdb.search({
             index:'stackoverflow-data',

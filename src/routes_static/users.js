@@ -5,7 +5,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var expressLayouts = require('express-ejs-layouts');
 
 // importing Mongodb database schema
-var User = require('../models/user');
+var models = require('../models/user');
 let currentUser;
 
 // register ejs template page
@@ -15,7 +15,7 @@ router.get('/register', function(req,res){
  
 // login ejs template page
 router.get('/login', function(req,res){
-   	res.render('login.ejs');
+  res.render('login.ejs');
 });
 
 // register
@@ -26,7 +26,8 @@ router.post('/register', function(req, res){
 	var username = req.body.username;
 	var password = req.body.password;
 	var password2 = req.body.password2;
-
+	var interests = req.body.interest;
+  console.log(interests[0]);
 	//Validation
 	req.checkBody('name', 'Name is required').notEmpty();
 	req.checkBody('email', 'Email is required').notEmpty();
@@ -41,16 +42,30 @@ router.post('/register', function(req, res){
 		res.render('register.ejs',{errors:errors});
 	}
 	else{
-		var newUser = new User({
+
+	  //Create a row for the user in login table
+		var newUser = new models.User({
 			name: name,
 			email:email,
 			username: username,
 			password: password,
 		})
-		User.createUser(newUser, function(err, user){
+    models.createUser(newUser, function(err, user){
 			if(err) throw err;
 		});
 
+		/*
+		 Create a new row for the user model in usermodel table.
+		 This will be dynamically updated depending on the interaction logs.
+		 Is yet to be implemented.
+		   */
+
+    var newUserModel = new models.UserModel({
+      username: username,
+      userModel : interests
+    }).save(function(err,newUserModel){
+      if(err) throw err;
+    });
 		req.flash('success_msg', 'You are registered and can now login');
 		res.redirect('login');	
 	}
@@ -59,21 +74,27 @@ router.post('/register', function(req, res){
 // login authenticate
 passport.use(new LocalStrategy(
   function(username, password, done) {
-   User.getUserByUsername(username, function(err, user){
-   	currentUser = user;
+   models.getUserByUsername(username, function(err, user){
    	if(err) throw err;
    	if(!user){
    		return done(null, false, {message: 'Unknown User'});
    	}
 
-   	User.comparePassword(password, user.password, function(err, isMatch){
+   	models.comparePassword(password, user.password, function(err, isMatch){
    		if(err) throw err;
    		if(isMatch){
-   			user.history.addToSet(new Date());		
-			user.save(function(err) {
-			if(err) throw err;
-			});
-   			return done(null, user);
+        currentUser = user.username;
+  		  var date = new Date();
+
+  		  // Store the logged user login time in history table.
+        var newHistory = new models.History({
+          username: user.username,
+          loginStamp: date
+        }).save(function(err,newHistory){
+            if(err) throw err;
+          });
+
+        return done(null, user);
    		} else {
    			return done(null, false, {message: 'Invalid password'});
    		}
@@ -124,16 +145,18 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  User.getUserById(id, function(err, user) {
+  models.getUserById(id, function(err, user) {
     done(err, user);
   });
 });
 
 // login post endpoint
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/default', failureRedirect:'login',failureFlash: true}),
+  passport.authenticate('local', { failureRedirect:'login',failureFlash: true}),
   function(req, res) {
-    res.redirect('/');
+    //Set the cookie for current userName
+    res.cookie("userid",currentUser,{httpOnly:false});
+    res.redirect('/default');
 });
 
 // logout 

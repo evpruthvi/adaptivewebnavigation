@@ -15,13 +15,23 @@ class DefaultResult extends Component{
       type:'stackoverflowdata',
       size: 10,
       body:{
-        query:{
-          match:{
-            tag:tag
+        query: {
+          bool: {
+            must: [
+              {
+                match: {
+                  tag: tag
+                }
+              },
+              {
+                match: {
+                  type: 'question'
+                }
+              }
+            ]
           }
         }
-      }
-    }).then(function (resp) {
+      }}).then(function (resp) {
         this.setState({ hits:resp.hits.hits });
       }.bind(this),
       function(error){
