@@ -3,7 +3,7 @@ import PostListItem from './post_list_item';
 
 const PostList = (props) => {
     console.log(props.posts);
-     
+
     const postItems = props.posts.map((post)=>{
         return <PostListItem key= {post._id}  post={post} />
     });

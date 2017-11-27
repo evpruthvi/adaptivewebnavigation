@@ -94,9 +94,11 @@ app.use(function (req, res, next) {
 
 
 app.use('/users',users);
+app.get('/about', function(req,res){
+  res.render('about.ejs');
+});
 // universal routing and rendering
 app.get('*', (req, res) => {
-  
    //All other routings
   match(
     { routes, location: req.url },
@@ -117,9 +119,7 @@ app.get('*', (req, res) => {
       if (renderProps) {
         // if the current route matched we have renderProps
         markup = renderToString(
-
            <RouterContext {...renderProps}/>
-          </CookiesProvider>
         );
       } else {
         // otherwise we can render a 404 page

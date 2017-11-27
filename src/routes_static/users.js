@@ -18,16 +18,26 @@ router.get('/login', function(req,res){
   res.render('login.ejs');
 });
 
+
+router.get('/api', function(req,res) {
+  models.UserModel.find({username: "aaa"}, function (err, docs) {
+      var interests = [];
+      for (var i = 0; i < docs.length; i++) {
+        interests.push(docs[i].userModel);
+      }
+      res.send(interests);
+    }
+  );
+});
+
 // register
 router.post('/register', function(req, res){
-	console.log(req.body);
 	var name = req.body.name;
 	var email = req.body.email;
 	var username = req.body.username;
 	var password = req.body.password;
 	var password2 = req.body.password2;
 	var interests = req.body.interest;
-  console.log(interests[0]);
 	//Validation
 	req.checkBody('name', 'Name is required').notEmpty();
 	req.checkBody('email', 'Email is required').notEmpty();

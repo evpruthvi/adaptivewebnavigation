@@ -8,6 +8,11 @@ class userResult extends Component{
 	constructor(props){
 		super(props);
 		this.state = { hits: [] };
+
+		/*
+		Get the user id appended to the url from post request
+		Do the elastic search, set the state
+		 */
 		var user_id  = props.params.userid;
 
 			elasticdb.search({
