@@ -27,10 +27,7 @@ const PostListItem = (props)=>{
                     <div className="viewcount">vote</div>
                 </div>
             </div>
-            <div className="status answered">
-                <strong>1</strong>answer
-            </div>
-            </div>
+         </div>
         </div>
     <div className="summary">
         <div> <h3><a href={titleLink} className="question-hyperlink">{props.post._source.title}</a></h3></div>
@@ -41,8 +38,7 @@ const PostListItem = (props)=>{
         <div className="started fr">
             <div className="user-info ">
                 <div className="user-action-time">
-                  asked <span title="2017-11-12 21:28:53Z" className="relativetime"> {props.post._source.time}</span>
-                </div>
+                  asked on <span className="relativetime"> {(new Date(props.post._source.time * 1000)).toDateString()}</span>                </div>
                 <div className="user-gravatar32">
                    <a href={userLink}><div className="gravatar-wrapper-32"><img src="/img/user.png"/></div></a>
                 </div>

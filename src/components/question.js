@@ -53,8 +53,7 @@ const Question = (props) => {
                       <td className="post-signature owner">
                           <div className="user-info ">
                             <div className="user-action-time">
-                                asked <span title="2017-11-23 02:41:01Z" className="relativetime">{props.qpost._source.time} mins ago</span>
-                            </div>
+                              asked on <span title="2017-11-23 02:41:01Z" className="relativetime">{(new Date(props.qpost._source.time * 1000)).toDateString()}</span>                            </div>
                             <div className="user-gravatar32">
                                 <a href={userLink}><div className="gravatar-wrapper-32"><img src="/img/user.png" alt="" width="32" height="32"/></div></a>
                             </div>

@@ -27,7 +27,8 @@ class qaresult extends Component{
         }
       }
     }).then(function (resp) {
-        this.setState({ answers: resp.hits.hits});
+        var output = processQuestionClickedResults(title,resp.hits.hits);
+        this.setState({ answers: output});
       }.bind(this),
       function(error){
         console.trace(error.message);
@@ -49,5 +50,19 @@ class qaresult extends Component{
       </div>
     );
   }
+}
+
+
+function processQuestionClickedResults(question,hits) {
+  var output = [];
+  for(var i = 0; i < hits.length; i++){
+    if(hits[i]._source.title.indexOf(question) !== -1){
+      output.push(hits[i]);
+    }
+  }
+  output.sort(function (a,b) {
+    return a._source.time - b._source.time;
+  });
+  return output;
 }
 export default qaresult;

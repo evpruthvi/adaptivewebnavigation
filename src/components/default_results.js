@@ -104,4 +104,5 @@ class DefaultResult extends Component{
     );
   }
 }
+
 export default DefaultResult;

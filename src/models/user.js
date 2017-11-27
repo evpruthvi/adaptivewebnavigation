@@ -84,7 +84,3 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 }
 
 
-module.exports.getUserModelById = function(id, callback){
-  UserModel.find({username:id}, callback);
-
-}
