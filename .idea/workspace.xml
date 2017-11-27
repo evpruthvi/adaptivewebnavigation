@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a74eb496-657e-4ffd-9188-307dbba2decb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/answer_list_item.js" afterPath="$PROJECT_DIR$/src/components/answer_list_item.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/default_results.js" afterPath="$PROJECT_DIR$/src/components/default_results.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/post_list_item.js" afterPath="$PROJECT_DIR$/src/components/post_list_item.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/answer_list.js" afterPath="$PROJECT_DIR$/src/components/answer_list.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/qa_page.js" afterPath="$PROJECT_DIR$/src/components/qa_page.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/question.js" afterPath="$PROJECT_DIR$/src/components/question.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/user.js" afterPath="$PROJECT_DIR$/src/models/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/sidebar_list.js" afterPath="$PROJECT_DIR$/src/components/sidebar_list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elasticdb.js" afterPath="$PROJECT_DIR$/src/elasticdb.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/static/js/bundle.js" afterPath="$PROJECT_DIR$/src/static/js/bundle.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,31 +21,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="question_header.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/question_header.js">
+      <file leaf-file-name="qa_page.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/qa_page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="1560">
+              <caret line="51" column="3" lean-forward="true" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="question.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/question.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-240">
+              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post_list_item.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/post_list_item.js">
+      <file leaf-file-name="answer_list.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/answer_list.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="29" column="9" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+            <state relative-caret-position="40">
+              <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/models/user.js">
+      <file leaf-file-name="answer_list_item.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/answer_list_item.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1385">
-              <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state relative-caret-position="1120">
+              <caret line="28" column="143" lean-forward="false" selection-start-line="28" selection-start-column="143" selection-end-line="28" selection-end-column="143" />
               <folding />
             </state>
           </provider>
@@ -109,7 +118,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/components/answer.js" />
         <option value="$PROJECT_DIR$/src/components/expand_page.js" />
-        <option value="$PROJECT_DIR$/src/components/answer_list.js" />
         <option value="$PROJECT_DIR$/src/components/qa_footer.js" />
         <option value="$PROJECT_DIR$/src/components/qa_footer1.js" />
         <option value="$PROJECT_DIR$/src/components/buf.js" />
@@ -117,14 +125,12 @@
         <option value="$PROJECT_DIR$/src/components/sidebar_list_item.js" />
         <option value="$PROJECT_DIR$/src/static/js/utils.js" />
         <option value="$PROJECT_DIR$/src/static/css/all.css" />
-        <option value="$PROJECT_DIR$/src/components/sidebar_list.js" />
         <option value="$PROJECT_DIR$/src/components/qa_page_footer.js" />
         <option value="$PROJECT_DIR$/src/views/partials/head.ejs" />
         <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/components/question_header.js" />
         <option value="$PROJECT_DIR$/src/views/login.ejs" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/elasticdb.js" />
         <option value="$PROJECT_DIR$/src/reducers/index.js" />
         <option value="$PROJECT_DIR$/src/reducers/reducer_default.js" />
         <option value="$PROJECT_DIR$/src/components/AppRoutes.js" />
@@ -139,11 +145,14 @@
         <option value="$PROJECT_DIR$/src/views/partials/header.ejs" />
         <option value="$PROJECT_DIR$/src/views/index.ejs" />
         <option value="$PROJECT_DIR$/src/components/answer_list_item.js" />
-        <option value="$PROJECT_DIR$/src/components/qa_page.js" />
         <option value="$PROJECT_DIR$/src/components/default_results.js" />
-        <option value="$PROJECT_DIR$/src/components/question.js" />
         <option value="$PROJECT_DIR$/src/components/post_list_item.js" />
         <option value="$PROJECT_DIR$/src/models/user.js" />
+        <option value="$PROJECT_DIR$/src/components/sidebar_list.js" />
+        <option value="$PROJECT_DIR$/src/elasticdb.js" />
+        <option value="$PROJECT_DIR$/src/components/qa_page.js" />
+        <option value="$PROJECT_DIR$/src/components/answer_list.js" />
+        <option value="$PROJECT_DIR$/src/components/question.js" />
       </list>
     </option>
   </component>
@@ -295,12 +304,12 @@
       <updated>1511407412211</updated>
       <workItem from="1511407415401" duration="8491000" />
       <workItem from="1511434357231" duration="22340000" />
-      <workItem from="1511783604572" duration="1034000" />
+      <workItem from="1511783604572" duration="3291000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104310000" />
+    <option name="totallyTimeSpent" value="106567000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-14" y="0" width="1948" height="2074" extended-state="0" />
@@ -342,13 +351,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/sidebar_list_item.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="8" column="126" lean-forward="false" selection-start-line="8" selection-start-column="126" selection-end-line="8" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/sidebar_list.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -415,20 +417,6 @@
     <entry file="file://$PROJECT_DIR$/src/components/qa_footer.js" />
     <entry file="file://$PROJECT_DIR$/src/components/qa_footer.js" />
     <entry file="file://$PROJECT_DIR$/src/components/buf.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/answer_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="7" column="5" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/sidebar_list_item.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="8" column="126" lean-forward="false" selection-start-line="8" selection-start-column="126" selection-end-line="8" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/static/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -466,13 +454,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/sidebar_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/qa_page_footer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
@@ -498,13 +479,6 @@
         <state relative-caret-position="853">
           <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/elasticdb.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="3" column="93" lean-forward="false" selection-start-line="3" selection-start-column="93" selection-end-line="3" selection-end-column="93" />
         </state>
       </provider>
     </entry>
@@ -622,14 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/answer_list_item.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="63" column="14" lean-forward="true" selection-start-line="63" selection-start-column="14" selection-end-line="63" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/post_list.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
@@ -648,36 +614,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/qa_page.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1293">
-          <caret line="66" column="1" lean-forward="true" selection-start-line="66" selection-start-column="1" selection-end-line="66" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/question.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1273">
-          <caret line="67" column="14" lean-forward="true" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/question_header.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/post_list_item.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="29" column="9" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+        <state relative-caret-position="960">
+          <caret line="41" column="16" lean-forward="true" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -687,6 +627,80 @@
         <state relative-caret-position="1385">
           <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/sidebar_list_item.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="8" column="126" lean-forward="false" selection-start-line="8" selection-start-column="126" selection-end-line="8" selection-end-column="126" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/tables.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="221" column="16" lean-forward="false" selection-start-line="221" selection-start-column="16" selection-end-line="221" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/sidebar_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="26" column="47" lean-forward="false" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/elasticdb.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/question_header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/answer_list_item.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1120">
+          <caret line="28" column="143" lean-forward="false" selection-start-line="28" selection-start-column="143" selection-end-line="28" selection-end-column="143" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/question.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-240">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/answer_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/qa_page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1560">
+          <caret line="51" column="3" lean-forward="true" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

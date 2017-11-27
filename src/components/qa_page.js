@@ -27,8 +27,8 @@ class qaresult extends Component{
         }
       }
     }).then(function (resp) {
-        var output = processQuestionClickedResults(title,resp.hits.hits);
-        this.setState({ answers: output});
+       // var output = processQuestionClickedResults(title,resp.hits.hits);
+        this.setState({ answers: resp.hits.hits});
       }.bind(this),
       function(error){
         console.trace(error.message);

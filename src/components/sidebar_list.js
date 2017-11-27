@@ -24,7 +24,6 @@ const Sidebar = (props)=>{
                <td>
                  <p className="label-key">viewed</p>
                </td>
-
                <td styles="padding-left: 10px">
                  <p className="label-key">
                    <b>15 times</b>

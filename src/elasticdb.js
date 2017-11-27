@@ -1,8 +1,8 @@
 var elasticsearch = require('elasticsearch');
 
 var client = new elasticsearch.Client({
-    host: 'https://search-aw-project-xce4jwvqtgztustwidikjac5fq.us-east-2.es.amazonaws.com/',
-     log: 'trace'
+    host: 'https://search-aw-project-xce4jwvqtgztustwidikjac5fq.us-east-2.es.amazonaws.com/'
+ //    log: 'trace'
 });
 
 client.ping({
