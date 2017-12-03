@@ -160,6 +160,32 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+
+
+
+router.post('/votes', function(req, res){
+  var user = currentUser;
+  if (user == null) {
+    console.log("No user logged in!");
+    return;
+  }
+
+  var newLog = new models.Log({
+    username: user.username,
+    action: req.body.action,
+    tags: req.body.tags,
+    url: req.body.url,
+    content: req.body.content,
+    timestamp: new Date()
+  }).save(function(err,newLog){
+    if(err) throw err;
+  });
+
+//  console.log(req.body);
+});
+
+
+
 // login post endpoint
 router.post('/login',
   passport.authenticate('local', { failureRedirect:'login',failureFlash: true}),

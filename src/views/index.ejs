@@ -2,6 +2,7 @@
 <html>
   <head>
     <% include partials/head %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-eval';" />
@@ -12,6 +13,7 @@
     <header>
       <% include partials/header %>
     </header>
+    <script src="/js/utils.js"></script>
     <div id="main"><%- markup -%></div>
 
     <script src="/js/bundle.js"></script>

@@ -7,19 +7,16 @@ import QaFooter from './qa_page_footer';
 import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
 import SidebarList from './sidebar_list';
-import cookie from 'react-cookie';
 
 class qaresult extends Component{
   constructor(props){
     super(props);
     this.state = { question:'', answers: [], recommendations:[]};
-
     var title  = props.params.title;
 
     elasticdb.search({
       index:'stackoverflow-data',
       type:'stackoverflowdata',
-      size: 10,
       body:{
         query:{
           match:{
@@ -37,41 +34,40 @@ class qaresult extends Component{
       }
     );
 
-    /*
-    Get the recommendation posts in the sidebar by title.
-    The recommendations should include 70% title related and 30% based on his model
-     */
+
+
     elasticdb.search({
-                       index:'stackoverflow-data',
-                       type:'stackoverflowdata',
-                       size: 20,
-                       body:{
-                         query: {
-                           bool: {
-                             must: [
-                               {
-                                 match: {
-                                   title: title
-                                 }
-                               },
-                               {
-                                 match: {
-                                   type: 'question'
-                                 }
-                               }
-                             ]
-                           }
-                         }
-                       }
-                     }).then(function (resp) {
-      var output = processRecommendations(title,resp.hits.hits);
-      this.setState({ recommendations: output.slice(0,10)});
-    }.bind(this),
-    function(error){
-      console.trace(error.message);
-    }
+      index:'stackoverflow-data',
+      type:'stackoverflowdata',
+      size: 20,
+      body:{
+        query: {
+          bool: {
+            must: [
+              {
+                match: {
+                  title: title
+                }
+              },
+              {
+                match: {
+                  type: 'question'
+                }
+              }
+            ]
+          }
+        }
+      }
+    }).then(function (resp) {
+        var output = processRecommendations(title,resp.hits.hits);
+        this.setState({ recommendations: output.slice(0,10)});
+      }.bind(this),
+      function(error){
+        console.trace(error.message);
+      }
     );
-}
+
+  }
 
   render(){
     return(
@@ -83,12 +79,11 @@ class qaresult extends Component{
           <QaFooter />
 
         </div>
-          <SidebarList recposts = {this.state.recommendations} />
+        <SidebarList recposts = {this.state.recommendations} />
       </div>
     );
   }
 }
-
 
 function processQuestionClickedResults(question,hits) {
   var output = [];
@@ -98,11 +93,10 @@ function processQuestionClickedResults(question,hits) {
     }
   }
   output.sort(function (a,b) {
-    return a._source.time - b._source.time;
+    return b._source.vote - a._source.vote;
   });
   return output;
 }
-
 
 
 function processRecommendations(question,hits) {
@@ -117,5 +111,7 @@ function processRecommendations(question,hits) {
   });
   return output;
 }
+
+
 
 export default qaresult;

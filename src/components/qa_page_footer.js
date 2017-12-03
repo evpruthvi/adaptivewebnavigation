@@ -1,6 +1,8 @@
 import React from 'react';
 
 const QaFooter = function(){
+
+
   return(
     <div>
     <form id="post-form" action="/questions/47446738/answer/submit" method="post" className="post-form">
@@ -15,11 +17,6 @@ const QaFooter = function(){
         </div>
       </div>
       </form>
-
-      <h2 className="bottom-notice" data-loc="1">
-        Not the answer you're looking for?
-        Browse other questions tagged <a href="https://stackoverflow.com/questions/tagged/javascript" className="post-tag" title="show questions tagged 'javascript'" rel="tag">javascript</a> <a href="https://stackoverflow.com/questions/tagged/jquery" className="post-tag" title="show questions tagged 'jquery'" rel="tag">jquery</a>  or <a href="https://stackoverflow.com/questions/ask">ask your own question</a>.
-      </h2>
     </div>
   );
 }

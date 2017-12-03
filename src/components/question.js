@@ -7,6 +7,7 @@ const Question = (props) => {
 
   var userLink = `/search/user/${props.qpost._source.user_id}`;
   var titleLink = `/search/qa/${props.qpost._source.title}`;
+  var titleLinkVotesOrder = `/search/qa/votes/${props.qpost._source.title}`;
   var tag=[];
   for(var i=0;i<3;i++){
     tag[i]=props.qpost._source.tag.split(" ")[i];
@@ -36,7 +37,7 @@ const Question = (props) => {
             <td className="postcell">
             <div>
                 <div className="post-text" itemProp="text">
-                    <p>{props.qpost._source.text}</p>
+                  <div dangerouslySetInnerHTML={{ __html: props.qpost._source.content.replace(/\\n/g,'')}} />
 
                   <pre className="default prettyprint prettyprinted" styles=""><code>
                       {props.qpost._source.code}
@@ -82,11 +83,9 @@ const Question = (props) => {
           </h2>
           <div>
             <div id="tabs">
-              <a href="https://stackoverflow.com/questions/47446738/trigger-function-only-if-no-mouse-clicks-in-x-seconds?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
-                active</a>
-              <a href="https://stackoverflow.com/questions/47446738/trigger-function-only-if-no-mouse-clicks-in-x-seconds?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+             <a href={titleLink} data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
                 oldest</a>
-              <a className="youarehere" href="https://stackoverflow.com/questions/47446738/trigger-function-only-if-no-mouse-clicks-in-x-seconds?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+              <a href={titleLinkVotesOrder} data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
                 votes</a>
             </div>
           </div>

@@ -36,11 +36,11 @@ var LogSchema = mongoose.Schema({
     type:String,
     index: true
   },
-  logtype:{type:String},
-  url:{type:String},
+  action:{type:String},
   tags:{type:String},
-  timestamp:{type:String},
-  time :{type:String}
+  url:{type:String},
+  content:{type:String},
+  timestamp:{type:String}
 });
 
 var History =  mongoose.model('history', HistorySchema);

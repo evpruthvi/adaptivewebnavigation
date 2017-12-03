@@ -15,6 +15,12 @@ const AnswerListItem = (props)=>{
   for(var i=0;i<3;i++){
     tagTitle[i]=`show questions tagged ${tag[i]}`;
   }
+
+   if(props.post._source.type === "accepted-answer"){
+     var accepted = <span class="vote-accepted-on load-accepted-answer-date"><img src="/img/accept.png"/></span>
+   }
+
+
   return(
     <div>
         <div id="answers">
@@ -29,6 +35,7 @@ const AnswerListItem = (props)=>{
                       <tr><a className="vote-up-off" title="This question shows research effort; it is useful and clear"><img src="/img/upvote.png"/>upvote</a></tr>
                       <tr><span itemProp="upvoteCount" className="vote-count-post ">{props.post._source.vote}</span></tr>
                       <tr><a className="vote-down-off" title="This question does not show any research effort; it is unclear or not useful"><img src="/img/downvote.png"/>down vote</a></tr>
+                      <tr><a>{accepted}</a></tr>
                   </div>
                 </td>
                 <td>
