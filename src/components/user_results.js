@@ -3,6 +3,8 @@ import PostList from './post_list';
 import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
 import cookie from 'react-cookie';
+import axios from 'axios';
+import HotTopicsList from './sidebar_hot_topics'
 
 class userResult extends Component{
 	constructor(props){

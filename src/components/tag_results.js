@@ -3,6 +3,8 @@ import PostList from './post_list';
 import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
 import cookie from 'react-cookie';
+import axios from 'axios';
+import HotTopicsList from './sidebar_hot_topics'
 
 
 /*
@@ -14,7 +16,7 @@ class result extends Component{
 
   constructor(props){
 		super(props);
-   	this.state = { hits: [] };
+   	this.state = { hits: [], hotTopics:[] };
 		var tag  = props.params.tag;
       elasticdb.search({
         index:'stackoverflow-data',
@@ -43,14 +45,29 @@ class result extends Component{
         function(error){
           console.trace(error.message);
         });
-     	}
+
+
+    axios.get('/users/hottopics')
+      .then(function (response) {
+        let tag = response.data[0];
+        this.setState({hotTopics:tag});
+        console.log("sidebar search" + tag);
+
+      }.bind(this))
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
 
     	render(){
 	      console.log(cookie.load('userid'));
         return(
 				<div>
 					<PostList posts = {this.state.hits} />
-				</div>
+          <HotTopicsList hposts = {this.state.hotTopics} />
+
+        </div>
 			);
 		}
 } 

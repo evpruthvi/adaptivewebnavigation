@@ -4,7 +4,7 @@ import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
 import cookie from 'react-cookie';
 import axios from 'axios';
-
+import HotTopicsList from './sidebar_hot_topics'
 
 /*
   This module renders the questions to be posted by default
@@ -19,7 +19,7 @@ import axios from 'axios';
 class DefaultResult extends Component{
   constructor(props){
     super(props);
-    this.state = { hits: []};
+    this.state = { hits: [], hotTopics:[]};
 
     //If user logged-in(cookie is set) then get the results from the usermodel database
     if(cookie.load('userid')){
@@ -27,7 +27,7 @@ class DefaultResult extends Component{
       //axios api call to the backend
       axios.get('/users/api')
         .then(function(response) {
-          let tag = response.data[0][1];
+          let tag = response.data[0];
           console.log("before search"+tag);
           elasticdb.search({
             index:'stackoverflow-data',
@@ -63,13 +63,13 @@ class DefaultResult extends Component{
     }
 
     //If user logged-in(cookie not set) then
-    else{
+    else {
       var tag = 'java';
       elasticdb.search({
-        index:'stackoverflow-data',
-        type:'stackoverflowdata',
+        index: 'stackoverflow-data',
+        type: 'stackoverflowdata',
         size: 10,
-        body:{
+        body: {
           query: {
             bool: {
               must: [
@@ -86,20 +86,34 @@ class DefaultResult extends Component{
               ]
             }
           }
-        }}).then(function (resp) {
-             this.setState({ hits:resp.hits.hits });
+        }
+      }).then(function (resp) {
+          this.setState({hits: resp.hits.hits});
         }.bind(this),
-        function(error){
+        function (error) {
           console.trace(error.message);
         });
+
+
     }
 
+    axios.get('/users/hottopics')
+      .then(function (response) {
+        let tag = response.data[0];
+        this.setState({hotTopics:tag});
+        console.log("sidebar search" + tag);
+
+      }.bind(this))
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render(){
     return(
       <div>
         <PostList posts = {this.state.hits} />
+        <HotTopicsList hposts = {this.state.hotTopics} />
       </div>
     );
   }

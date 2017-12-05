@@ -3,7 +3,9 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var expressLayouts = require('express-ejs-layouts');
+var MongoClient = require('mongodb').MongoClient;
 
+var url ='mongodb://harsha:1234@ds113736.mlab.com:13736/stack_overflow';
 // importing Mongodb database schema
 var models = require('../models/user');
 let currentUser;
@@ -107,7 +109,7 @@ router.get('/api', function(req,res) {
   models.UserModel.find({username: "aaa"}, function (err, docs) {
       var interests = [];
       for (var i = 0; i < docs.length; i++) {
-        interests.push(docs[i].userModel);
+        interests.push(docs[i].userModel.toString());
       }
       res.send(interests);
     }
@@ -208,6 +210,46 @@ passport.deserializeUser(function(id, done) {
 
 
 
+router.get('/hottopics',function (req,res) {
+  models.Log.find({}, function (err, docs) {
+    var curUser ='';
+    if(curUser)  curUser = currentUser;
+    var allUserDict = {};
+    var curUserTags = []
+    for (var i = 0; i < docs.length; i++) {
+      var tags = docs[i].tags;
+      if (tags != null) {
+        var tagList = tags.split(" ");
+        for (var j = 0; j < tagList.length; j++) {
+          if (tagList[j].trim() != '' && curUser != docs[i].user) {
+            if ( allUserDict[tagList[j]] != undefined) {
+              allUserDict[tagList[j]] = allUserDict[tagList[j]] + 1;
+            } else {
+              allUserDict[tagList[j]] = 1;
+            }
+          }
+        }
+      }
+    }
+
+    var items = Object.keys(allUserDict).map(function(key) {
+      return [key, allUserDict[key]];
+    });
+
+    items.sort(function(first, second) {
+      return second[1] - first[1];
+    });
+    items = items.slice(0,10);
+    var topTags = [];
+    for(var k =0; k < 10 ; k++){
+      topTags = topTags.concat(items[k][0]);
+    }
+    console.log("top users:"+ topTags);
+    res.send([topTags]);
+  });
+});
+
+
 
 router.post('/votes', function(req, res){
   var user = currentUser;
@@ -238,6 +280,18 @@ router.post('/login',
   function(req, res) {
     //Set the cookie for current userName
     res.cookie("userid",currentUser,{httpOnly:false});
+
+
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      db.collection("stack_overflow").aggregate([{"$group" :{_id:{reputation:"$reputation",username:"$user_id", tags:"$tag"}}},{$sort:{"_id.reputation":-1}}]).limit(30000).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        db.close();
+      });
+    });
+
+
     res.redirect('/default');
 });
 
