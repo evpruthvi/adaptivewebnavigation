@@ -192,44 +192,6 @@ passport.use(new LocalStrategy(
    });
 }));
 
-// receiving data from extension
-router.post('/rxdx', function(req, res){
-    	//User.getUserByUsername(currentUser, function(err, user){
-  	 	//	if(err) throw err;
-  	 	var user=currentUser;
-		var text = req.body.text.trim().split("|");
-	    var key=text[0].trim();
-  	    var value=text[1]
-  	    console.log(key+":"+value);     
-	    var stamp=req.body.stamp;
-	    switch(key){
-	    	case "up vote": user.log1.addToSet("up-voted answer on: "+value+" at "+stamp);		
-	    					user.save(function(err) {if(err) throw err;});
-							break;
-		    case "down vote": user.log1.addToSet("down voted answer on: "+value+" at "+stamp);
-		    				 user.save(function(err) {if(err) throw err;});
-							break;
-		    case "share": user.log2.addToSet("shared an answer on "+value+" at "+stamp);
-							user.save(function(err) {if(err) throw err;});
-							break;
-			case "add a comment": user.log2.addToSet("commented on a answer on "+value+" at "+stamp);	
-							user.save(function(err) {if(err) throw err;});
-							break;
-			case "Ask Question" : user.log4.addToSet("Asked at "+stamp);
-							user.save(function(err) {if(err) throw err;});
-							break;
-			case "ask your own question" : user.log4.addToSet("Asked at "+stamp);
-							user.save(function(err) {if(err) throw err;});
-							break;
-			case "Question clicked" :user.log5.addToSet(value+" at "+stamp);
-							user.save(function(err) {if(err) throw err;});
-							break;
-			default : user.log3.addToSet(key+" at "+stamp);
-							user.save(function(err) {if(err) throw err;});
-							break;
-		}
-	});
-
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
