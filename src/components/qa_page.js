@@ -83,7 +83,7 @@ class qaresult extends Component{
           <QaFooter />
 
         </div>
-          <SidebarList recposts = {this.state.recommendations} />
+          <SidebarList recposts = {this.state.recommendations} asked = {this.state.question} lastActive ={this.state.answers[this.state.answers.length-1]} nanswers = {this.state.answers.length}/>
       </div>
     );
   }

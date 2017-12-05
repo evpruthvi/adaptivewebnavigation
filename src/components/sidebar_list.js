@@ -3,39 +3,49 @@ import SidebarItem from './sidebar_list_item';
 
 const Sidebar = (props)=>{
 
+  if(!(props.lastActive && props.asked && props.recposts)){
+    return <div>Loading..</div>
+  }
+
   const sidebarList = props.recposts.map((post)=>{
     return <SidebarItem key= {post._id}  post={post} />
   });
 
+
+  var lastActivePost = props.lastActive;
+  var latestUserLink = `/search/user/${lastActivePost._source.user_id}`;
+  console.log(latestUserLink);
    return(
      <div>
        <div id="sidebar" className="show-votes" role="complementary" aria-label="sidebar">
          <div className="module question-stats">
+           <h4 id="h-related">Summary</h4>
+
            <table id="qinfo">
              <tbody><tr>
                <td>
-                 <p className="label-key">asked</p>
+                  <p className="label-key">asked on</p>
                </td>
                <td styles="padding-left: 10px">
-                 <p className="label-key" title="2017-11-23 02:41:01Z"><b>today</b></p>
+                 <p className="label-key" ><b>{(new Date(props.asked._source.time * 1000)).toDateString()}</b></p>
                </td>
              </tr>
              <tr>
                <td>
-                 <p className="label-key">viewed</p>
+                 <p className="label-key">Number of answers</p>
                </td>
                <td styles="padding-left: 10px">
                  <p className="label-key">
-                   <b>15 times</b>
+                   <b>{props.nanswers}</b>
                  </p>
                </td>
              </tr>
              <tr>
                <td>
-                 <p className="label-key">active</p>
+                 <p className="label-key">Last active</p>
                </td>
                <td styles="padding-left: 10px">
-                 <p className="label-key"><b><a href="https://stackoverflow.com/questions/47446738/trigger-function-only-if-no-mouse-clicks-in-x-seconds?lastactivity" className="lastactivity-link" title="2017-11-23 02:49:14Z">today</a></b></p>
+                 <p className="label-key"><b><a href={latestUserLink} className="lastactivity-link" >{(new Date(lastActivePost._source.time * 1000)).toDateString()}</a></b></p>
                </td>
              </tr>
              </tbody></table>
