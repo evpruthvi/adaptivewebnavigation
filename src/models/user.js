@@ -32,10 +32,7 @@ var UserModelSchema = mongoose.Schema({
 
 //create a schema for Interaction Logs of user
 var LogSchema = mongoose.Schema({
-  user:{
-    type:String,
-    index: true
-  },
+  user:{type:String},
   action:{type:String},
   tags:{type:String},
   url:{type:String},

@@ -18,6 +18,86 @@ router.get('/login', function(req,res){
   res.render('login.ejs');
 });
 
+router.post('/interactionsLastMonth', function(req, res, next) {
+      var output = [];
+      var dayCounts = [];
+      var days = [];
+      var dateIndexDict = {};
+      for(var i = 0 ; i < 31 ; i++){
+        var d = new Date();
+        d.setDate(d.getDate() - i);
+        dateIndexDict[d.getMonth()+"-"+d.getDate()+"-"+d.getFullYear()] = i;
+        dayCounts.push(0);
+        days.push(d.getMonth()+"-"+d.getDate()+"-"+d.getFullYear());
+        //dayCounts.push(0);
+      }
+  models.Log.find({}, function (err, docs) {
+    for(var i = 0; i < docs.length ; i++ ){
+      var c = new Date(docs[i].timestamp);
+      //     console.log(c);
+      var formattedDate = c.getMonth()+"-"+c.getDate()+"-"+c.getFullYear();
+      var b = new Date();
+      b.setDate(b.getDate() - 31);
+      if(c > b){
+        var index = dateIndexDict[formattedDate];
+        dayCounts[index] = dayCounts[index] + 1;
+      }
+    }
+    dayCounts.push(currentUser);
+    days.push('x');
+    output.push(dayCounts.reverse());
+    output.push(days.reverse());
+    res.send(output);
+  });
+});
+
+
+router.get('/getmetricsdata', function(req,res){
+  models.Log.find({}, function (err, docs) {
+    var curUser = currentUser;
+    var allUserDict = {};
+    var curUserDict = {};
+    for (var i = 0; i < docs.length; i++) {
+      var tags = docs[i].tags;
+      if (tags != null) {
+        var tagList = tags.split(" ");
+        for (var j = 0; j < tagList.length; j++) {
+          if (allUserDict[tagList[j]] != undefined) {
+            if (curUser != undefined) {
+              curUserDict[tagList[j]] = curUserDict[tagList[j]] + 1;
+            }
+            allUserDict[tagList[j]] = allUserDict[tagList[j]] + 1;
+          } else {
+            if (curUser != undefined) {
+              curUserDict[tagList[j]] = 1;
+            }
+            allUserDict[tagList[j]] = 1;
+          }
+        }
+      }
+    }
+
+    var allUserArray = [];
+    var curUserArray = [];
+    for (var key in allUserDict) {
+      var temp = {text: key, weight: allUserDict[key]};
+      allUserArray.push(temp)
+    }
+    for (var key in curUserDict) {
+      var temp = {text: key, weight: curUserDict[key]};
+      curUserArray.push(temp)
+    }
+    console.log("Cur User:" + curUser);
+    console.log("Cur User Array:" + curUserArray);
+    console.log("All User:" + allUserArray);
+    res.send([allUserArray, curUserArray]);
+  });
+});
+
+router.get('/metrics',function (req,res) {
+      res.render('metrics.ejs');
+});
+
 
 router.get('/api', function(req,res) {
   models.UserModel.find({username: "aaa"}, function (err, docs) {
@@ -171,7 +251,7 @@ router.post('/votes', function(req, res){
   }
 
   var newLog = new models.Log({
-    username: user.username,
+    user: currentUser,
     action: req.body.action,
     tags: req.body.tags,
     url: req.body.url,
@@ -198,6 +278,7 @@ router.post('/login',
 // logout 
 router.get('/logout', function(req,res){
 	req.logout();
+	res.clearCookie('userid');
 	req.flash('success_msg', 'You are now logged out');
 	res.redirect('login');
 })

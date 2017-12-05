@@ -93,8 +93,14 @@ function processQuestionClickedResults(question,hits) {
     }
   }
   output.sort(function (a,b) {
+    return a._source.time - b._source.time;
+  });
+
+  var question = output.shift();
+  output.sort(function (a,b) {
     return b._source.vote - a._source.vote;
   });
+  output.unshift(question);
   return output;
 }
 
