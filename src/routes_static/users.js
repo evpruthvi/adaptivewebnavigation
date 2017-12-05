@@ -63,12 +63,16 @@ router.get('/getmetricsdata', function(req,res){
         var tagList = tags.split(" ");
         for (var j = 0; j < tagList.length; j++) {
           if (allUserDict[tagList[j]] != undefined) {
-            if (curUser != undefined) {
-              curUserDict[tagList[j]] = curUserDict[tagList[j]] + 1;
+            if (curUser != undefined && curUser == docs[i].user) {
+              if (curUserDict[tagList[j]] != undefined){
+                curUserDict[tagList[j]] = curUserDict[tagList[j]] + 1;
+              }else{
+                curUserDict[tagList[j]] = 1;
+              }
             }
             allUserDict[tagList[j]] = allUserDict[tagList[j]] + 1;
           } else {
-            if (curUser != undefined) {
+            if (curUser != undefined && curUser == docs[i].user) {
               curUserDict[tagList[j]] = 1;
             }
             allUserDict[tagList[j]] = 1;
