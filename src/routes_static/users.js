@@ -93,9 +93,9 @@ router.get('/getmetricsdata', function(req,res){
       var temp = {text: key, weight: curUserDict[key]};
       curUserArray.push(temp)
     }
-    console.log("Cur User:" + curUser);
+  /*  console.log("Cur User:" + curUser);
     console.log("Cur User Array:" + curUserArray);
-    console.log("All User:" + allUserArray);
+    console.log("All User:" + allUserArray);*/
     res.send([allUserArray, curUserArray]);
   });
 });
@@ -272,6 +272,34 @@ router.post('/votes', function(req, res){
 //  console.log(req.body);
 });
 
+router.get('/api/alldata', function(req,res){
+
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var interests = [];
+    db.collection("stack_overflow").aggregate([{"$group" :{_id:{reputation:"$reputation",username:"$user_id", tags:"$tag"}}},{$sort:{"_id.reputation":-1}},{$limit:4000}],function(err, result) {
+    //db.collection("stack_overflow").find([{tag:1,username:1,reputation:1},{$sort:{"reputation":-1}},{$limit:30000}],function(err, result) {
+    if (err) throw err;
+      //console.log(result);
+      res.send(result);
+      db.close();
+    });
+    // console.log("interests"+interests);
+  });
+});
+
+
+router.get('/api/singledata', function(req,res){
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    if(!currentUser) currentUser = '';
+    db.collection("logs").aggregate([{$match:{user:currentUser}}],function(err, result) {
+      if (err) throw err;
+      res.send(result);
+      db.close();
+    });
+  });
+});
 
 
 // login post endpoint
@@ -280,18 +308,6 @@ router.post('/login',
   function(req, res) {
     //Set the cookie for current userName
     res.cookie("userid",currentUser,{httpOnly:false});
-
-
-    MongoClient.connect(url, function(err, db) {
-      if (err) throw err;
-      db.collection("stack_overflow").aggregate([{"$group" :{_id:{reputation:"$reputation",username:"$user_id", tags:"$tag"}}},{$sort:{"_id.reputation":-1}}]).limit(30000).toArray(function(err, result) {
-        if (err) throw err;
-        console.log(result);
-        db.close();
-      });
-    });
-
-
     res.redirect('/default');
 });
 

@@ -8,7 +8,7 @@ import NotFoundPage from './NotFoundPage'
 import elasticdb from '../elasticdb';
 import SidebarList from './sidebar_list';
 
-class qaresult extends Component{
+class qaVoteResult extends Component{
   constructor(props){
     super(props);
     this.state = { question:'', answers: [], recommendations:[]};
@@ -79,7 +79,7 @@ class qaresult extends Component{
           <QaFooter />
 
         </div>
-        <SidebarList recposts = {this.state.recommendations} />
+        <SidebarList recposts = {this.state.recommendations} asked = {this.state.question} lastActive ={this.state.answers[this.state.answers.length-1]} nanswers = {this.state.answers.length}/>
       </div>
     );
   }
@@ -120,4 +120,4 @@ function processRecommendations(question,hits) {
 
 
 
-export default qaresult;
+export default qaVoteResult;

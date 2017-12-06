@@ -58,7 +58,7 @@ class DefaultResult extends Component{
             });
         }.bind(this))
         .catch(function (error) {
-          console.log(error);
+        //  console.log(error);
         });
     }
 
@@ -91,7 +91,7 @@ class DefaultResult extends Component{
           this.setState({hits: resp.hits.hits});
         }.bind(this),
         function (error) {
-          console.trace(error.message);
+      //    console.trace(error.message);
         });
 
 
@@ -101,11 +101,9 @@ class DefaultResult extends Component{
       .then(function (response) {
         let tag = response.data[0];
         this.setState({hotTopics:tag});
-        console.log("sidebar search" + tag);
-
       }.bind(this))
       .catch(function (error) {
-        console.log(error);
+       // console.log(error);
       });
   }
 

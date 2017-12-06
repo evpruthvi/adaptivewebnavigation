@@ -16,9 +16,20 @@
     <title>Group 10 StackOverflow</title>
     <link rel="stylesheet" href="/css/bootstrap.css"/>
     <link rel="stylesheet" href="/css/c3.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/dc.css"/>
 </head>
 
-<body class="container">
+
+<script type="text/javascript" src="/js/d3.js"></script>
+<script type="text/javascript" src="/js/crossfilter.js"></script>
+
+<script type="text/javascript" src="/js/dc.js"></script>
+<script type="text/javascript" src="/js/queue.js"></script>
+
+<script type="text/javascript" src="/d3code/filterchart.js"></script>
+
+<body>
 <header>
     <% include partials/header %>
 </header>
@@ -30,9 +41,38 @@
     <div class="col-sm-6" id="curuserwordcloud" style="width: 550px; height: 350px;margin-right: 100px ;"></div>
     <div class="col-sm-6" id="alluserwordcloud" style="width: 550px; height: 350px;margin-right: 100px ;"></div>
 </div>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
 
-<h2 id="usageHistory">Last 30 days Usage history</h2>
+
+<h3 id="usageHistory">Last 30 days Usage history</h3>
 <div id="interactions30UserChart"></div>
+
+
+<hr>
+<hr>
+</hr>
+
+<div class="container" style="justify-content: center; align-items: center; display: flex">
+    <h3 class="col-sm-6" style="width: 550px; margin-left: 200px ;">Interactive Leaderboard-Reputation-Activity</h3>
+</div>
+<div class="container" style="justify-content: center; align-items: center; display: flex">
+    <div id="chart-ring-year"  style="width:400px; height:400px">
+    <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
+      <a href="javascript:yearRingChart.filterAll();dc.redrawAll();">reset</a>
+    </div>
+  </div>
+ 
+  <div id="chart-row-spenders"  style="width: 600px; height:600px; margin-left:500px">
+    <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
+      <a href="javascript:spenderRowChart.filterAll();dc.redrawAll();">reset</a>
+    </div>
+  </div>
+
+</div>
 
 <!-- /container -->
 <footer>
